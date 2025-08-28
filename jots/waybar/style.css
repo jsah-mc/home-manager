@@ -1,0 +1,39 @@
+@import "mocha.css";
+* {
+    font-family: 'JetBrains Mono Nerd Font', 'Material Design Icons';
+}
+
+window#waybar {
+    background-color: @crust;
+    border: 1px solid @mauve;
+}
+
+#pill1 {
+    border: 0px;
+}
+#pill2 {
+    background-color: @mantle;
+    border: 1px solid @mauve;
+}
+
+#workspaces button.active {
+   background-color: @mauve;
+   color: #11111b; 
+   border-radius: 0px;
+}
+
+
+
+#custom-arrow {
+    font-size: 8px;
+}
+
+#window {
+    color: @mauve;
+}
+
+.modules-left,
+.modules-center,
+.modules-right>box {
+    padding: 3px;
+}
