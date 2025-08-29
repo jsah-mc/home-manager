@@ -67,6 +67,7 @@
     pkgs.fastfetch
     pkgs.gh
     pkgs.kitty
+    pkgs.vesktop
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -320,6 +321,11 @@
       profiles.default.accent = "mauve";
       profiles.default.icons.enable = true;
       profiles.default.icons.flavor = "mocha";
+    };
+    vesktop = {
+      enable = true;
+      flavor = "mocha";
+      accent = "mauve";
     };
     # optionally configure the extension settings; defaults are shown below =
   };
