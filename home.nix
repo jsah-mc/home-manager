@@ -8,8 +8,8 @@
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "foot";
-  home.homeDirectory = "/home/foot";
+  home.username = "bigfoot";
+  home.homeDirectory = "/home/bigfoot";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -68,6 +68,8 @@
     pkgs.gh
     pkgs.kitty
     pkgs.vesktop
+    pkgs.waybar
+    pkgs.nixfmt-rfc-style
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -85,15 +87,19 @@
     #".config/hyprland/mocha.conf".source = "./jots/hypr/mocha.conf";
     #    ".config/hyprland/hyprland.conf".source = "./jots/hypr/hyprland.conf";
   };
-  home.file."/home/foot/.config/rofi/config.rasi".source = ./jots/rofi/config.rasi;
-  home.file."/home/foot/.config/rofi/catppuccin-default.rasi".source =
+  home.file."/home/bigfoot/.config/rofi/config.rasi".source = ./jots/rofi/config.rasi;
+  home.file."/home/bigfoot/.config/rofi/catppuccin-default.rasi".source =
     ./jots/rofi/catppuccin-default.rasi;
-  home.file."/home/foot/.config/rofi/catppuccin-mocha.rasi".source =
+  home.file."/home/bigfoot/.config/rofi/catppuccin-mocha.rasi".source =
     ./jots/rofi/catppuccin-mocha.rasi;
-  home.file."/home/foot/.config/hypr/mocha.conf".source = ./jots/hypr/mocha.conf;
-  home.file."/home/foot/.config/hypr/hyprlock.conf".source = ./jots/hypr/hyprlock.conf;
-  home.file."/home/foot/.config/hypr/hypridle.conf".source = ./jots/hypr/hypridle.conf;
-  home.file."/home/foot/.config/hypr/hyprpaper.conf".source = ./jots/hypr/hyprpaper.conf;
+  home.file."/home/bigfoot/.config/scripts".source = ./jots/scripts;
+  home.file."/home/bigfoot/.config/hypr/mocha.conf".source = ./jots/hypr/mocha.conf;
+  home.file."/home/bigfoot/.config/hypr/hyprlock.conf".source = ./jots/hypr/hyprlock.conf;
+  home.file."/home/bigfoot/.config/hypr/hypridle.conf".source = ./jots/hypr/hypridle.conf;
+  home.file."/home/bigfoot/.config/hypr/hyprpaper.conf".source = ./jots/hypr/hyprpaper.conf;
+  home.file."/home/bigfoot/.config/waybar/config.jsonc".source = ./jots/waybar/config.jsonc;
+  home.file."/home/bigfoot/.config/waybar/style.css".source = ./jots/waybar/style.css;
+  home.file."/home/bigfoot/.config/waybar/mocha.css".source = ./jots/waybar/mocha.css;
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell
@@ -108,11 +114,15 @@
   #
   # or
   #
-  #  /etc/profiles/per-user/foot/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/bigfoot/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+
+  # programs.waybar = {
+  #   enable = true;
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -123,66 +133,66 @@
       # allowUnfreePredicate = pkg = builtins.elem (lib.getName pkg) [ "steam" "anydesk" ];
     };
   };
-  programs.hyprpanel = {
-    # Configure and theme almost all options from the GUI.
-    # See 'https =//hyprpanel.com/configuration/settings.html'.
-    # Default = <same as gui>
-    #    package = inputs.hyprpanel.packages.${pkgs.system}.default;
-    enable = true;
-    #    theme = "catppuccin_split";
-    settings = {
+  # programs.hyprpanel = {
+  #   # Configure and theme almost all options from the GUI.
+  #   # See 'https =//hyprpanel.com/configuration/settings.html'.
+  #   # Default = <same as gui>
+  #   #    package = inputs.hyprpanel.packages.${pkgs.system}.default;
+  #   enable = true;
+  #   #    theme = "catppuccin_split";
+  #   settings = {
 
-      # Configure bar layouts for monitors.
-      # See 'https =//hyprpanel.com/configuration/panel.html'.
-      # Default = null
-      #layout = {
-      bar.layouts = {
-        "0" = {
-          left = [
-            "dashboard"
-            "workspaces"
-            "windowtitle"
-          ];
-          middle = [ "media" ];
-          right = [
-            "cpu"
-            "ram"
-            "volume"
-            "network"
-            "systray"
-            "notifications"
-            "power"
-          ];
-        };
-      };
+  #     # Configure bar layouts for monitors.
+  #     # See 'https =//hyprpanel.com/configuration/panel.html'.
+  #     # Default = null
+  #     #layout = {
+  #     bar.layouts = {
+  #       "0" = {
+  #         left = [
+  #           "dashboard"
+  #           "workspaces"
+  #           "windowtitle"
+  #         ];
+  #         middle = [ "media" ];
+  #         right = [
+  #           "cpu"
+  #           "ram"
+  #           "volume"
+  #           "network"
+  #           "systray"
+  #           "notifications"
+  #           "power"
+  #         ];
+  #       };
+  #     };
 
-      bar.launcher.autoDetectIcon = true;
-      bar.workspaces.show_icons = true;
-      menus.clock = {
-        time = {
-          military = true;
-          hideSeconds = true;
-        };
-        weather.unit = "metric";
-      };
+  #     bar.launcher.autoDetectIcon = true;
+  #     bar.workspaces.show_icons = true;
+  #     menus.clock = {
+  #       time = {
+  #         military = true;
+  #         hideSeconds = true;
+  #       };
+  #       weather.unit = "metric";
+  #     };
 
-      menus.dashboard.directories.enabled = false;
-      menus.dashboard.stats.enable_gpu = false;
-      menus.dashboard.controls.enabled = false;
-      menus.dashboard.shortcuts.enabled = false;
-      theme = {
-        bar.transparent = false;
-        bar.floating = true;
+  #     menus.dashboard.directories.enabled = false;
+  #     menus.dashboard.stats.enable_gpu = false;
+  #     menus.dashboard.controls.enabled = false;
+  #     menus.dashboard.shortcuts.enabled = false;
+  #     theme = {
+  #       bar.transparent = false;
+  #       bar.floating = true;
 
-        font = {
-          name = "JetBrainsMono NF";
-          size = "16px";
-        };
-      };
-      hyprland.enable = true;
-      systemd = false;
-    };
-  };
+  #       font = {
+  #         name = "JetBrainsMono NF";
+  #         size = "16px";
+  #       };
+  #     };
+  #     hyprland.enable = true;
+  #     systemd = false;
+  #   };
+  # };
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [
@@ -208,6 +218,7 @@
       font_size = "11";
       window_margin_width = "10";
       confirm_os_window_close = "0";
+      shell = "zsh";
     };
   };
   programs.zsh = {
@@ -243,6 +254,7 @@
       pkief.material-product-icons
       esbenp.prettier-vscode
       formulahendry.code-runner
+      vscodevim.vim
     ];
     profiles.default.userSettings = {
       "workbench.productIconTheme" = "material-product-icons";
