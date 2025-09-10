@@ -322,7 +322,7 @@
         "strings" = "on";
       };
       "tailwindCSS.includeLanguages" = {
-        "plaintext" = "html"
+        "plaintext" = "html";
       };
     };
   };
