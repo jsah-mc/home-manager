@@ -58,7 +58,8 @@
     pkgs.swww
     pkgs.kdePackages.dolphin
     pkgs.yazi
-    pkgs.chromium
+    # pkgs.chromium
+    pkgs.google-chrome
     pkgs.vscode
     pkgs.hypridle
     pkgs.hyprlock
@@ -70,6 +71,10 @@
     pkgs.vesktop
     pkgs.waybar
     pkgs.nixfmt-rfc-style
+    pkgs.wlogout
+    pkgs.localsend
+    pkgs.pnpm
+    pkgs.nodejs_24
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -197,7 +202,6 @@
     enable = true;
     plugins = [
       pkgs.hyprlandPlugins.borders-plus-plus
-      pkgs.hyprlandPlugins.hyprbars
     ];
     extraConfig = ''
       ${builtins.readFile ./jots/hypr/hyprland.conf}
@@ -255,6 +259,7 @@
       esbenp.prettier-vscode
       formulahendry.code-runner
       vscodevim.vim
+      bradlc.vscode-tailwindcss
     ];
     profiles.default.userSettings = {
       "workbench.productIconTheme" = "material-product-icons";
@@ -309,6 +314,16 @@
       "[nix]" = {
         "editor.defaultFormatter" = "jnoortheen.nix-ide";
       };
+      "terminal.integrated.defaultProfile.linux" = "zsh";
+      "files.associations" = {
+        "*.css" = "tailwindcss";
+      };
+      "editor.quickSuggestions" = {
+        "strings" = "on";
+      };
+      "tailwindCSS.includeLanguages" = {
+        "plaintext" = "html"
+      };
     };
   };
   catppuccin = {
@@ -335,6 +350,11 @@
       profiles.default.icons.flavor = "mocha";
     };
     vesktop = {
+      enable = true;
+      flavor = "mocha";
+      accent = "mauve";
+    };
+    wlogout = {
       enable = true;
       flavor = "mocha";
       accent = "mauve";

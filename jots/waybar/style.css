@@ -6,10 +6,7 @@
 
 window#waybar {
   background-color: transparent;
-}
-
-window#waybar > box {
-  padding: 3px;
+  padding: 5px;
 }
 
 #pill1 {
@@ -23,7 +20,7 @@ window#waybar > box {
 #workspaces button.active {
   background-color: @mauve;
   color: #11111b;
-  border-radius: 0px;
+  border-radius: 10px;
 }
 
 #custom-arrow {

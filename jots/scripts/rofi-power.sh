@@ -1,5 +1,4 @@
 # CMDs
-uptime_info=$(uptime -p | sed -e 's/up //g')
 host=$(hostnamectl hostname)
 
 # Options with Icons and Text
@@ -27,7 +26,7 @@ rofi_cmd() {
 run_cmd() {
     case $1 in
         "")
-            swaylock
+            hyprlock
             ;;
         "")
             systemctl suspend
