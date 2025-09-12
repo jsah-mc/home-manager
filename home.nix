@@ -39,7 +39,7 @@
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
     #(pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    pkgs.nerd-fonts.jetbrains-mono
+
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example; this adds a command 'my-hello' to your
     # # environment =
@@ -200,8 +200,32 @@
   # };
   stylix = {
     enable = true;
-    image = ./jots/wallpaper/explorer_green_day.jpg;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    polarity = "dark";
+    targets.waybar.enable = true;
+    fonts = {
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font";
+      };
+
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
+    };
   };
+
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
@@ -215,12 +239,7 @@
   programs.kitty = {
     enable = true;
     settings = {
-      font_family = "JetBrainsMono NFM";
-      bold_font = "auto";
-      italic_font = "auto";
-      bold_italic_font = "auto";
       cursor_trail = "0";
-      font_size = "11";
       window_margin_width = "10";
       confirm_os_window_close = "0";
       shell = "zsh";
@@ -267,7 +286,6 @@
       "window.titleBarStyle" = "native";
       "editor.defaultFormatter" = "esbenp.prettier-vscode";
       "editor.formatOnSave" = true;
-      "editor.fontFamily" = "JetBrainsMono Nerd Font Mono";
       "workbench.activityBar.location" = "top";
       "workbench.sideBar.location" = "right";
       "window.commandCenter" = false;
@@ -329,10 +347,6 @@
   };
   gtk = {
     enable = true;
-    font = {
-      name = "Sans";
-      size = 11;
-    };
   };
   qt = {
     enable = true;
