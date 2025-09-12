@@ -22,10 +22,10 @@
 
   home.pointerCursor = {
     gtk.enable = true;
-    # x11.enable = true;
+    x11.enable = true;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
-    size = 16;
+    size = 20;
   };
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -198,11 +198,12 @@
   #     systemd = false;
   #   };
   # };
+  stylix = {
+    enable = true;
+    image = ./jots/wallpaper/explorer_green_day.jpg;
+  };
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = [
-      pkgs.hyprlandPlugins.borders-plus-plus
-    ];
     extraConfig = ''
       ${builtins.readFile ./jots/hypr/hyprland.conf}
     '';
@@ -326,49 +327,8 @@
       };
     };
   };
-  catppuccin = {
-    enable = true;
-    #flavour = "mocha";
-    #accent = "mauve";
-    kitty = {
-      enable = true;
-      flavor = "mocha";
-    };
-    nvim = {
-      enable = true;
-      flavor = "mocha";
-    };
-    kvantum = {
-      enable = true;
-      flavor = "mocha";
-    };
-    vscode = {
-      profiles.default.enable = true;
-      profiles.default.flavor = "mocha";
-      profiles.default.accent = "mauve";
-      profiles.default.icons.enable = true;
-      profiles.default.icons.flavor = "mocha";
-    };
-    vesktop = {
-      enable = true;
-      flavor = "mocha";
-      accent = "mauve";
-    };
-    wlogout = {
-      enable = true;
-      flavor = "mocha";
-      accent = "mauve";
-    };
-    # optionally configure the extension settings; defaults are shown below =
-  };
   gtk = {
     enable = true;
-
-    theme = {
-      package = pkgs.magnetic-catppuccin-gtk;
-      name = "Catppuccin-GTK-Dark";
-    };
-
     font = {
       name = "Sans";
       size = 11;
@@ -376,7 +336,5 @@
   };
   qt = {
     enable = true;
-    platformTheme.name = "kvantum";
-    style.name = "kvantum";
   };
 }

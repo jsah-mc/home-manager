@@ -9,26 +9,39 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
-    catppuccin.url = "github:catppuccin/nix";
-
+    #    catppuccin.url = "github:catppuccin/nix";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, catppuccin, home-manager, ... }:
+  outputs =
+    {
+      nixpkgs,
+      stylix,
+      home-manager,
+      ...
+    }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-#	nixpkgs.nerd-fonts.caskaydia-mono;
-    in{
+      #	nixpkgs.nerd-fonts.caskaydia-mono;
+    in
+    {
       homeConfigurations."bigfoot" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
-        modules = [ ./home.nix catppuccin.homeModules.catppuccin ];
+        modules = [
+          ./home.nix
+          stylix.homeModules.stylix
+        ];
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
-#	extraSpecialArgs = { inherit inputs; };
+        #	extraSpecialArgs = { inherit inputs; };
       };
     };
 }
