@@ -1,37 +1,38 @@
 // @import "catppuccin-latte"
 // @import "catppuccin-frappe"
 // @import "catppuccin-macchiato"
-@import "catppuccin-mocha"
+@import "colors.rasi"
 
 * {
-  selected-active-foreground:  @background;
-  lightfg:                     @text;
-  separatorcolor:              @mauve;
-  urgent-foreground:           @red;
-  alternate-urgent-background: @lightbg;
-  lightbg:                     @mantle;
-  background-color:            @crust;
-  border-color:                @mauve;
-  normal-background:           @background;
-  selected-urgent-background:  @red;
-  alternate-active-background: @lightbg;
+  selected-active-foreground:  @base00;
+  lightfg:                     @base05;
+  separatorcolor:              @base0E;
+  urgent-foreground:           @base08;
+  alternate-urgent-background: @base01;
+  lightbg:                     @base02;
+  background-color:            @base00;
+  border-color:                @base0E;
+  normal-background:           @base00;
+  selected-urgent-background:  @base08;
+  alternate-active-background: @base01;
   spacing:                     2;
-  alternate-normal-foreground: @foreground;
-  urgent-background:           @background;
-  selected-normal-foreground:  @lightbg;
-  active-foreground:           @blue;
-  background:                  @crust;
-  selected-active-background:  @blue;
-  active-background:           @background;
-  selected-normal-background:  @lightfg;
-  alternate-normal-background: @lightbg;
-  foreground:                  @text;
-  selected-urgent-foreground:  @background;
-  normal-foreground:           @foreground;
-  alternate-urgent-foreground: @red;
-  alternate-active-foreground: @blue;
+  alternate-normal-foreground: @base05;
+  urgent-background:           @base00;
+  selected-normal-foreground:  @base02;
+  active-foreground:           @base05;  /* was base0D (blue) */
+  background:                  @base00;
+  selected-active-background:  @base05;  /* was base0D (blue) */
+  active-background:           @base00;
+  selected-normal-background:  @base05;
+  alternate-normal-background: @base01;
+  foreground:                  @base05;
+  selected-urgent-foreground:  @base00;
+  normal-foreground:           @base05;
+  alternate-urgent-foreground: @base08;
+  alternate-active-foreground: @base05;  /* was base0D (blue) */
   border-radius: 0.4em;
 }
+
 element {
     padding: 1px ;
     cursor:  pointer;

@@ -1,3 +1,4 @@
+@import "colors.css";
 * {
   font-family: "JetBrains Mono Nerd Font", "Material Design Icons";
   border-radius: 10px;
@@ -14,13 +15,17 @@ window#waybar {
 }
 #pill2 {
   background-color: mix(@theme_bg_color, white, 0.1);
-  border: 1px solid @base0D;
+  border: 1px solid @base0E;
 }
 
 #workspaces button.active {
-  background-color: @base0D;
-  color: @theme_bg_color;
+  background-color: @base0E;
+  color: @theme_fg_color;
   border-radius: 10px;
+}
+
+#window {
+  color: @base0E;
 }
 
 #custom-arrow {
@@ -32,7 +37,7 @@ window#waybar {
 .modules-right {
   border-radius: 10px;
   background-color: @theme_bg_color;
-  border: 1px solid @base0D;
+  border: 1px solid @base0E;
 }
 
 .modules-left,

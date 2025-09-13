@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  lib,
   ...
 }:
 
@@ -99,12 +100,13 @@
     ./jots/rofi/catppuccin-mocha.rasi;
   home.file."/home/bigfoot/.config/scripts".source = ./jots/scripts;
   home.file."/home/bigfoot/.config/hypr/mocha.conf".source = ./jots/hypr/mocha.conf;
-  home.file."/home/bigfoot/.config/hypr/hyprlock.conf".source = ./jots/hypr/hyprlock.conf;
+  #home.file."/home/bigfoot/.config/hypr/hyprlock.conf".source = ./jots/hypr/hyprlock.conf;
   home.file."/home/bigfoot/.config/hypr/hypridle.conf".source = ./jots/hypr/hypridle.conf;
   home.file."/home/bigfoot/.config/hypr/hyprpaper.conf".source = ./jots/hypr/hyprpaper.conf;
   home.file."/home/bigfoot/.config/waybar/config.jsonc".source = ./jots/waybar/config.jsonc;
   home.file."/home/bigfoot/.config/waybar/style.css".source = ./jots/waybar/style.css;
   home.file."/home/bigfoot/.config/waybar/mocha.css".source = ./jots/waybar/mocha.css;
+  home.file."/home/bigfoot/wallpaper".source = ./jots/wallpaper;
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell
@@ -200,9 +202,11 @@
   # };
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
+    image = ./wallpaper/african-light.jpg;
     polarity = "dark";
     targets.waybar.enable = true;
+    targets.hyprlock.enable = true;
     fonts = {
       serif = {
         package = pkgs.dejavu_fonts;
@@ -225,13 +229,53 @@
       };
     };
   };
+  xdg.configFile."rofi/colors.rasi".text = ''
+    * {
+      base00: #${config.lib.stylix.colors.base00};
+      base01: #${config.lib.stylix.colors.base01};
+      base02: #${config.lib.stylix.colors.base02};
+      base03: #${config.lib.stylix.colors.base03};
+      base04: #${config.lib.stylix.colors.base04};
+      base05: #${config.lib.stylix.colors.base05};
+      base06: #${config.lib.stylix.colors.base06};
+      base07: #${config.lib.stylix.colors.base07};
+      base08: #${config.lib.stylix.colors.base08};
+      base09: #${config.lib.stylix.colors.base09};
+      base0A: #${config.lib.stylix.colors.base0A};
+      base0B: #${config.lib.stylix.colors.base0B};
+      base0C: #${config.lib.stylix.colors.base0C};
+      base0D: #${config.lib.stylix.colors.base0D};
+      base0E: #${config.lib.stylix.colors.base0E};
+      base0F: #${config.lib.stylix.colors.base0F};
+    }
+  '';
+  xdg.configFile."waybar/colors.css".text = ''
+    @define-color base00 #${config.lib.stylix.colors.base00};
+    @define-color base01 #${config.lib.stylix.colors.base01};
+    @define-color base02 #${config.lib.stylix.colors.base02};
+    @define-color base03 #${config.lib.stylix.colors.base03};
+    @define-color base04 #${config.lib.stylix.colors.base04};
+    @define-color base05 #${config.lib.stylix.colors.base05};
+    @define-color base06 #${config.lib.stylix.colors.base06};
+    @define-color base07 #${config.lib.stylix.colors.base07};
+    @define-color base08 #${config.lib.stylix.colors.base08};
+    @define-color base09 #${config.lib.stylix.colors.base09};
+    @define-color base0A #${config.lib.stylix.colors.base0A};
+    @define-color base0B #${config.lib.stylix.colors.base0B};
+    @define-color base0C #${config.lib.stylix.colors.base0C};
+    @define-color base0D #${config.lib.stylix.colors.base0D};
+    @define-color base0E #${config.lib.stylix.colors.base0E};
+    @define-color base0F #${config.lib.stylix.colors.base0F};
 
+  '';
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
       ${builtins.readFile ./jots/hypr/hyprland.conf}
     '';
   };
+  services.hyprpaper.enable = true;
+  programs.hyprlock.enable = true;
   programs.rofi = {
     package = pkgs.rofi-wayland;
     enable = true;
@@ -278,7 +322,6 @@
       pkief.material-product-icons
       esbenp.prettier-vscode
       formulahendry.code-runner
-      vscodevim.vim
       bradlc.vscode-tailwindcss
     ];
     profiles.default.userSettings = {
