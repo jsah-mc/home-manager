@@ -102,11 +102,11 @@
   home.file."/home/bigfoot/.config/hypr/mocha.conf".source = ../jots/hypr/mocha.conf;
   #home.file."/home/bigfoot/.config/hypr/hyprlock.conf".source = ./jots/hypr/hyprlock.conf;
   home.file."/home/bigfoot/.config/hypr/hypridle.conf".source = ../jots/hypr/hypridle.conf;
-  home.file."/home/bigfoot/.config/hypr/hyprpaper.conf".source = ../jots/hypr/hyprpaper.conf;
+  # home.file."/home/bigfoot/.config/hypr/hyprpaper.conf".source = ../jots/hypr/hyprpaper.conf;
   home.file."/home/bigfoot/.config/waybar/config.jsonc".source = ../jots/waybar/config.jsonc;
   home.file."/home/bigfoot/.config/waybar/style.css".source = ../jots/waybar/style.css;
   home.file."/home/bigfoot/.config/waybar/mocha.css".source = ../jots/waybar/mocha.css;
-  home.file."/home/bigfoot/wallpaper".source = ../jots/wallpaper;
+  #  home.file."/home/bigfoot/wallpaper".source = ../jots/wallpaper;
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell
@@ -202,8 +202,7 @@
   # };
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
-    image = ../wallpaper/african-light.jpg;
+    image = ../african-light.jpg;
     polarity = "dark";
     targets.waybar.enable = true;
     targets.hyprlock.enable = true;
@@ -271,7 +270,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
-      ${builtins.readFile ./jots/hypr/hyprland.conf}
+      ${builtins.readFile ../jots/hypr/hyprland.conf}
     '';
   };
   services.hyprpaper.enable = true;
@@ -388,6 +387,7 @@
       };
     };
   };
+  programs.vesktop.enable = true;
   gtk = {
     enable = true;
   };
